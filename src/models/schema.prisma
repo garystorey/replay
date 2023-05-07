@@ -1,0 +1,158 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model Genre {
+  id          String  @id @default(cuid())
+  description String? @db.LongText()
+  name        String  @unique()
+  game        Game[]
+
+  @@index(id)
+}
+
+model Game {
+  id          String      @id @default(cuid())
+  name        String      @unique()
+  description String?     @db.LongText()
+  picture     String      @default("")
+  flagged     Boolean     @default(false)
+  views       Int         @default(0)
+  genreId     String
+  genre       Genre       @relation(fields: [genreId], references: [id])
+  character   Character[]
+
+  @@index(id)
+  @@index([genreId])
+}
+
+model Character {
+  id          String   @id @default(cuid())
+  name        String   @unique()
+  description String?  @db.LongText()
+  picture     String   @default("")
+  flagged     Boolean  @default(false)
+  views       Int      @default(0)
+  gameId      String
+  replay      Replay[]
+  game        Game     @relation(fields: [gameId], references: [id])
+
+  @@index(id)
+  @@index([gameId])
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index(id)
+  @@index([id, userId])
+  @@index([userId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index(id)
+  @@index([id, userId])
+  @@index([userId])
+}
+
+model User {
+  id            String         @id @default(cuid())
+  name          String?
+  email         String?        @unique
+  emailVerified DateTime?
+  image         String?
+  nickname      String?        @default("")
+  accounts      Account[]
+  sessions      Session[]
+  flagged       Boolean        @default(false)
+  subscriptions Subscription[]
+  channel       Channel[]
+
+  @@index(id)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Channel {
+  id            String         @id @default(cuid())
+  name          String
+  description   String         @default("") @db.LongText()
+  created       DateTime       @default(now())
+  updated       DateTime       @updatedAt
+  picture       String         @default("")
+  views         Int            @default(0)
+  ownerId       String         @unique
+  published     Boolean        @default(false)
+  flagged       Boolean        @default(false)
+  owner         User           @relation(fields: [ownerId], references: [id])
+  subscriptions Subscription[]
+  replay        Replay[]
+
+  @@index(id)
+}
+
+model Subscription {
+  id        String  @id @default(cuid())
+  memberId  String
+  channelId String
+  member    User    @relation(fields: [memberId], references: [id])
+  channel   Channel @relation(fields: [channelId], references: [id])
+
+  @@index([id, memberId, channelId])
+  @@index([memberId])
+  @@index([channelId])
+}
+
+model Replay {
+  id          String    @id @default(cuid())
+  name        String    @default("")
+  description String?   @default("") @db.LongText()
+  channelId   String
+  characterId String
+  picture     String    @default("")
+  video       String    @default("")
+  views       Int       @default(0)
+  created     DateTime  @default(now())
+  updated     DateTime  @updatedAt()
+  published   Boolean   @default(false)
+  flagged     Boolean   @default(false)
+  data        Json
+  channel     Channel   @relation(fields: [channelId], references: [id])
+  character   Character @relation(fields: [characterId], references: [id])
+
+  @@index(id)
+  @@index([channelId])
+  @@index([characterId])
+}
