@@ -105,31 +105,33 @@ model VerificationToken {
 }
 
 model Replay {
-  id          String    @id @default(cuid())
-  name        String    @default("")
-  description String?   @default("") @db.LongText()
-  channelId   String
-  characterId String
-  picture     String    @default("")
-  video       String    @default("")
-  views       Int       @default(0)
-  created     DateTime  @default(now())
-  updated     DateTime  @updatedAt()
-  published   Boolean   @default(false)
-  flagged     Boolean   @default(false)
-  data        Json
-  character   Character @relation(fields: [characterId], references: [id])
+  id           String     @id @default(cuid())
+  name         String     @default("")
+  description  String?    @default("") @db.LongText()
+  characterId  String
+  controllerId String
+  picture      String     @default("")
+  video        String     @default("")
+  views        Int        @default(0)
+  created      DateTime   @default(now())
+  updated      DateTime   @updatedAt()
+  published    Boolean    @default(false)
+  flagged      Boolean    @default(false)
+  data         Json
+  character    Character  @relation(fields: [characterId], references: [id])
+  controller   Controller @relation(fields: [controllerId], references: [id])
 
   @@index(id)
-  @@index([channelId])
   @@index([characterId])
+  @@index([controllerId])
 }
 
 model Controller {
-  id           String @id @default(cuid())
+  id           String   @id @default(cuid())
   serialNumber String
   ownerId      String
-  owner        User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  owner        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  Replay       Replay[]
 
   @@index([ownerId])
 }
