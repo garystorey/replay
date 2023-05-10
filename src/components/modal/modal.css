@@ -1,0 +1,32 @@
+[data-modal] {
+    border: 1px solid #cccccc;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 3px 1px var(--gray1);
+    padding: 0;
+    margin: 0;
+  }
+  
+  [data-modal-header],
+  [data-modal-body],
+  [data-modal-footer] {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+  
+  [data-modal-header] {
+    background-color: var(--gray1);
+    box-shadow: 1px 1px 3px 1px var(--gray1);
+  }
+  
+  [data-modal-body] {
+    flex-direction: column;
+  }
+  
+  [data-modal-footer] {
+    background-color: var(--gray1);
+    padding: 1rem;
+  }
+  

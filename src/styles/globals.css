@@ -21,3 +21,70 @@ body {
   background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
     rgb(var(--background-start-rgb));
 }
+
+[data-button] {
+  all: unset;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  padding: 0.5rem 1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 1px 1px 3px 1px var(--neutral-2);
+  border: 1px solid transparent;
+}
+
+[data-button]:not(:disabled):not([data-button-as="none"]):hover {
+  box-shadow: 1px 1px 3px 1px #333;
+}
+
+[data-button]:not([data-button-as="none"]):focus {
+  box-shadow: -1px -1px 3px 1px rgba(0, 0, 55, 0.3);
+}
+
+button[data-button-as="alternate"] {
+  border: 0;
+  background-color: transparent;
+  color: #333333;
+}
+
+button[data-button-as="warning"] {
+  border: 0;
+  background-color: rgb(220, 223, 21);
+  color: #333333;
+}
+
+button[data-button-as="primary"] {
+  border: 0;
+  background-color: rgb(82, 3, 211);
+  color: #eeeeee;
+}
+
+button[data-button-as="success"] {
+  border: 0;
+  background-color: rgb(4, 130, 4);
+  color: #eeeeee;
+}
+
+button[data-button-as="danger"] {
+  border: 0;
+  background-color: rgb(166, 6, 6);
+  color: #eeeeee;
+}
+
+[data-button]:disabled {
+  background-color: transparent;
+  color: #aaaaaa;
+  cursor: not-allowed;
+}
+
+[data-button][data-button-as="none"] {
+  all: unset;
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  background-color: inherit;
+  color: inherit;
+}
