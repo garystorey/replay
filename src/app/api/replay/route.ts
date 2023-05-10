@@ -8,17 +8,10 @@ const config = {
 
 const conn = connect(config)
 
-export default async function handler(req: Request, res: Response) {
+export async function GET(request: Request) {
   const results = await conn.execute("select * from replay limit 10")
-
-  if (req.method === "GET") {
-    return {
-      data: results.rows,
-    }
-  }
-  if (req.method === "POST") {
-    return {
-      msg: "post OK",
-    }
+  return {
+    status: "ok",
+    data: results.rows,
   }
 }
