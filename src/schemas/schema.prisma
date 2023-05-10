@@ -82,17 +82,16 @@ model Session {
 }
 
 model User {
-  id            String         @id @default(cuid())
+  id            String       @id @default(cuid())
   name          String?
-  email         String?        @unique
+  email         String?      @unique
   emailVerified DateTime?
   image         String?
-  nickname      String?        @default("")
+  nickname      String?      @default("")
   accounts      Account[]
   sessions      Session[]
-  flagged       Boolean        @default(false)
-  subscriptions Subscription[]
-  channel       Channel[]
+  flagged       Boolean      @default(false)
+  Controller    Controller[]
 
   @@index(id)
 }
@@ -103,36 +102,6 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-}
-
-model Channel {
-  id            String         @id @default(cuid())
-  name          String
-  description   String         @default("") @db.LongText()
-  created       DateTime       @default(now())
-  updated       DateTime       @updatedAt
-  picture       String         @default("")
-  views         Int            @default(0)
-  ownerId       String         @unique
-  published     Boolean        @default(false)
-  flagged       Boolean        @default(false)
-  owner         User           @relation(fields: [ownerId], references: [id])
-  subscriptions Subscription[]
-  replay        Replay[]
-
-  @@index(id)
-}
-
-model Subscription {
-  id        String  @id @default(cuid())
-  memberId  String
-  channelId String
-  member    User    @relation(fields: [memberId], references: [id])
-  channel   Channel @relation(fields: [channelId], references: [id])
-
-  @@index([id, memberId, channelId])
-  @@index([memberId])
-  @@index([channelId])
 }
 
 model Replay {
@@ -149,10 +118,18 @@ model Replay {
   published   Boolean   @default(false)
   flagged     Boolean   @default(false)
   data        Json
-  channel     Channel   @relation(fields: [channelId], references: [id])
   character   Character @relation(fields: [characterId], references: [id])
 
   @@index(id)
   @@index([channelId])
   @@index([characterId])
+}
+
+model Controller {
+  id           String @id @default(cuid())
+  serialNumber String
+  ownerId      String
+  owner        User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+  @@index([ownerId])
 }
