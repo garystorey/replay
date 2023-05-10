@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "prisma": {
-    "schema": "./src/models/schema.prisma"
+    "schema": "./src/schemas/schema.prisma"
   },
   "dependencies": {
     "@formkit/auto-animate": "1.0.0-beta.6",
