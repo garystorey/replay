@@ -10,7 +10,9 @@ const config = {
 const conn = connect(config)
 
 export async function GET(request: NextRequest) {
-  const results = await conn.execute("select * from replay limit 10")
+  const { searchParams } = new URL(request.url)
+  const id = searchParams.get("id")
+  const results = await conn.execute("select * from replay where id=:id", { id })
   return NextResponse.json({
     status: "ok",
     data: results.rows,
