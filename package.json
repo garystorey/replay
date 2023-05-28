@@ -5,39 +5,41 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db": "npx prisma studio",
+    "db:push": "npx prisma db push"
   },
   "prisma": {
     "schema": "./src/schemas/schema.prisma"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.19.0",
     "@formkit/auto-animate": "1.0.0-beta.6",
     "@garystorey/cssclass": "^1.2.5",
     "@garystorey/slugify": "^1.0.3",
     "@paralleldrive/cuid2": "^2.2.0",
     "@planetscale/database": "^1.7.0",
-    "@types/node": "20.1.0",
-    "@types/react": "18.2.6",
+    "@prisma/client": "^4.14.1",
+    "@types/node": "20.2.5",
+    "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
-    "eslint": "8.40.0",
-    "eslint-config-next": "13.4.1",
-    "next": "13.4.1",
+    "eslint": "8.41.0",
+    "eslint-config-next": "13.4.4",
+    "next": "13.4.4",
     "next-auth": "^4.22.1",
-    "postcss": "8.4.23",
+    "postcss": "8.4.24",
+    "prisma": "^4.14.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4",
-    "usezodform": "^0.2.8",
+    "usezodform": "^0.3.1",
     "zod": "^3.21.4"
   },
   "devDependencies": {
-    "@prisma/client": "^4.14.0",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.2.8",
-    "prisma": "^4.14.0"
+    "prettier-plugin-tailwindcss": "^0.3.0"
   }
 }

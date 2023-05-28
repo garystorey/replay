@@ -1,5 +1,5 @@
 export * from "./button/button"
 export * from "./show/show"
 export * from "./flex/flex"
-export * from "./if/if"
 export * from "./message/message"
+export * from "./badge/badge"

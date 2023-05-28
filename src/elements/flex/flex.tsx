@@ -1,5 +1,6 @@
-import styles from "./flex.module.css"
 import { ComponentPropsWithRef } from "react"
+
+import styles from "./flex.module.css"
 
 export type FlexProps = ComponentPropsWithRef<"div"> & {
   gap?: string
@@ -21,17 +22,11 @@ export function Flex({
   wrap = false,
 }: FlexProps) {
   const props =
-    alignSelf === ""
-      ? { gap, justifyContent, alignItems }
-      : { gap, justifyContent, alignItems }
-  const flexDirection =
-    direction === "column" ? styles.flexColumn : styles.flexRow
+    alignSelf === "" ? { gap, justifyContent, alignItems } : { gap, justifyContent, alignItems }
+  const flexDirection = direction === "column" ? styles.flexColumn : styles.flexRow
   const addWrap = wrap ? styles.flexWrap : ""
   return (
-    <div
-      className={`${styles.flex} ${flexDirection}${addWrap} ${className}`}
-      style={props}
-    >
+    <div className={`${styles.flex} ${flexDirection}${addWrap} ${className}`} style={props}>
       {children}
     </div>
   )

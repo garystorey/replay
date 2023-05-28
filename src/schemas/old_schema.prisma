@@ -9,40 +9,33 @@ datasource db {
   relationMode = "prisma"
 }
 
-model ButtonEntry {
-  id           String @id @default(cuid())
-  controllerId String
-  buttons      Int
-  timestamp    Int
-
-  @@index(id)
-  @@index([id, controllerId])
-}
-
-model Controller {
-  id      String @id @unique //serial number
-  ownerId String
-  owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-
-  @@index(id)
-  @@index([ownerId, id])
-}
-
 model Replay {
-  id           String          @id @default(cuid())
-  created      DateTime        @default(now())
-  updated      DateTime        @updatedAt()
-  name         String
-  description  String
+  id           String      @id @default(cuid())
   controllerId String
-  startTs      Int
-  endTs        Int
-  owner        User            @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-  ownerId      String
-  tags         TagsOnReplays[]
+  created      DateTime    @default(now())
+  updated      DateTime    @updatedAt()
+  data         Json
+  ReplayInfo   ReplayInfo?
+  controller   Controller  @relation(fields: [controllerId], references: [id])
 
   @@index(id)
-  @@index([ownerId])
+  @@index([controllerId])
+}
+
+model ReplayInfo {
+  id          String   @id @default(cuid())
+  created     DateTime @default(now())
+  updated     DateTime @updatedAt()
+  name        String
+  description String
+
+  replayId String @unique
+  replay   Replay @relation(fields: [replayId], references: [id])
+
+  tags TagsOnReplays[]
+
+  @@index(id)
+  @@index([replayId])
 }
 
 model Tag {
@@ -54,14 +47,26 @@ model Tag {
 }
 
 model TagsOnReplays {
-  replay   Replay @relation(fields: [replayId], references: [id])
-  replayId String
-  tag      Tag    @relation(fields: [tagId], references: [id])
-  tagId    String
+  replay       ReplayInfo @relation(fields: [replayInfoId], references: [id])
+  replayInfoId String
+  tag          Tag        @relation(fields: [tagId], references: [id])
+  tagId        String
 
-  @@id([replayId, tagId])
-  @@index([replayId])
+  @@id([replayInfoId, tagId])
+  @@index([replayInfoId])
   @@index([tagId])
+}
+
+model Controller {
+  id           String   @id @default(cuid())
+  serialNumber String   @unique
+  ownerId      String
+  owner        User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  replay       Replay[]
+
+  @@index(id)
+  @@index([ownerId])
+  @@index([serialNumber])
 }
 
 model User {
@@ -74,7 +79,6 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Controller    Controller[]
-  Replay        Replay[]
 
   @@index(id)
 }

@@ -1,6 +1,6 @@
 import { ComponentPropsWithRef } from "react"
 
-export type ButtonVariants = "primary" | "secondary" | "tertiary"
+export type ButtonVariants = "primary" | "alternate" | "warning" | "success" | "none"
 
 export type ButtonProps = ComponentPropsWithRef<"button"> & {
   variant: ButtonVariants
@@ -15,7 +15,7 @@ export function Button({
 }: ButtonProps) {
   const classes = `button button-${variant} ${className}`
   return (
-    <button {...props} type={type} className={classes}>
+    <button data-button-as={`${variant}`} {...props} type={type} className={classes}>
       {children}
     </button>
   )

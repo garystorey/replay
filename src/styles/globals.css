@@ -21,8 +21,11 @@ body {
   background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
     rgb(var(--background-start-rgb));
 }
+main {
+  min-height: 60vh;
+}
 
-[data-button] {
+[data-button-as] {
   all: unset;
   font-size: inherit;
   font-family: inherit;
@@ -35,11 +38,11 @@ body {
   border: 1px solid transparent;
 }
 
-[data-button]:not(:disabled):not([data-button-as="none"]):hover {
+[data-button-as]:not(:disabled):not([data-button-as="none"]):hover {
   box-shadow: 1px 1px 3px 1px #333;
 }
 
-[data-button]:not([data-button-as="none"]):focus {
+[data-button-as]:not([data-button-as="none"]):focus {
   box-shadow: -1px -1px 3px 1px rgba(0, 0, 55, 0.3);
 }
 
@@ -73,13 +76,13 @@ button[data-button-as="danger"] {
   color: #eeeeee;
 }
 
-[data-button]:disabled {
+[data-button-as]:disabled {
   background-color: transparent;
   color: #aaaaaa;
   cursor: not-allowed;
 }
 
-[data-button][data-button-as="none"] {
+[data-button-as="none"] {
   all: unset;
   font-size: inherit;
   font-family: inherit;
