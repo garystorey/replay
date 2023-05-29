@@ -11,12 +11,6 @@ dependencies:
   '@formkit/auto-animate':
     specifier: 1.0.0-beta.6
     version: 1.0.0-beta.6
-  '@garystorey/cssclass':
-    specifier: ^1.2.5
-    version: 1.2.5
-  '@garystorey/slugify':
-    specifier: ^1.0.3
-    version: 1.0.3
   '@paralleldrive/cuid2':
     specifier: ^2.2.0
     version: 2.2.0
@@ -329,14 +323,6 @@ packages:
 
   /@formkit/auto-animate@1.0.0-beta.6:
     resolution: {integrity: sha512-PVDhLAlr+B4Xb7e+1wozBUWmXa6BFU8xUPR/W/E+TsQhPS1qkAdAsJ25keEnFrcePSnXHrOsh3tiFbEToOzV9w==}
-    dev: false
-
-  /@garystorey/cssclass@1.2.5:
-    resolution: {integrity: sha512-ratFP687agAMwLa3tjD1Z4gcYWmiZZcX54A1Yuz6ggMNlCU7+4Upf1jlaXvT3XuK8aXzkuQdcajM6SaLxQNrOA==}
-    dev: false
-
-  /@garystorey/slugify@1.0.3:
-    resolution: {integrity: sha512-0XXE42dnky8rKDCAMG4cnYBXrPJogd5qtscDdfHYxA6a4k3TojzIT3amZhc5MudJHJgyAW4AGIXOA3Qtafdm7A==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.8:
