@@ -1,0 +1,14 @@
+.micro {
+  aspect-ratio: 2/1;
+  margin: 1rem;
+  width: 500px;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+  border-width: 2px;
+  border-style: solid;
+  border-right-color: #000000;
+  border-bottom-color: #000000;
+  border-left-color: #444444;
+  border-top-color: #444444;
+}

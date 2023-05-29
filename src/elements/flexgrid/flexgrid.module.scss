@@ -1,0 +1,253 @@
+.fgrow {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 0;
+  margin: 0;
+  gap: 1.5rem 0.75rem;
+
+  @media screen and (max-width: 480px) {
+    flex: 1;
+    flex-direction: column;
+  }
+}
+
+.fgrow.reverse {
+  flex-direction: row-reverse;
+}
+
+.fgcol {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  flex: 1 1 100%;
+  gap: 1.5rem 0.75rem;
+}
+
+.fgspan0 {
+  flex: inherit;
+}
+
+.fgspan1 {
+  flex: 1 1 100%;
+}
+
+.fgspan2 {
+  flex: 2 1 100%;
+}
+
+.fgspan3 {
+  flex: 3 1 100%;
+}
+
+.fgspan4 {
+  flex: 4 1 100%;
+}
+
+.fgspan5 {
+  flex: 5 1 100%;
+}
+
+.fgflex {
+  display: flex;
+  flex-grow: 1 1 100%;
+
+  @media screen and (max-width: 599px) {
+    width: 100%;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+
+.fgflex.inline {
+  display: inline-flex;
+}
+
+.jc {
+  &center {
+    justify-content: center;
+  }
+
+  &start {
+    justify-content: flex-start;
+    justify-content: start;
+  }
+
+  &end {
+    justify-content: flex-end;
+    justify-content: end;
+  }
+
+  &spacebetween {
+    justify-content: space-between;
+  }
+
+  &spaceevenly {
+    justify-content: space-evenly;
+  }
+
+  &spacearound {
+    justify-content: space-around;
+  }
+
+  &left {
+    justify-content: left;
+  }
+
+  &right {
+    justify-content: right;
+  }
+}
+
+.ai {
+  &center {
+    align-items: center;
+  }
+
+  &start {
+    align-items: flex-start;
+    align-items: start;
+  }
+
+  &end {
+    align-items: flex-end;
+    align-items: end;
+  }
+
+  &stretch {
+    align-items: stretch;
+  }
+
+  &baseline {
+    align-items: baseline;
+  }
+
+  &first {
+    align-items: first baseline;
+  }
+
+  &last {
+    align-items: last baseline;
+  }
+
+  &selfstart {
+    align-items: self-start;
+  }
+
+  &selfend {
+    align-items: self-end;
+  }
+}
+
+.ac {
+  &center {
+    align-content: center;
+  }
+
+  &start {
+    align-content: flex-start;
+    align-content: start;
+  }
+
+  &end {
+    align-content: flex-end;
+    align-content: end;
+  }
+
+  &stretch {
+    align-content: stretch;
+  }
+
+  &normal {
+    align-content: normal;
+  }
+
+  &spacearound {
+    align-content: space-around;
+  }
+
+  &spacebetween {
+    align-content: space-between;
+  }
+
+  &spaceevenly {
+    align-content: space-evenly;
+  }
+}
+.fd {
+  &column {
+    flex-direction: column;
+  }
+
+  &columnreverse {
+    flex-direction: column-reverse;
+  }
+
+  &row {
+    flex-direction: row;
+  }
+
+  &rowreverse {
+    flex-direction: row-reverse;
+  }
+
+  &inherit {
+    flex-direction: inherit;
+  }
+
+  &initial {
+    flex-direction: initial;
+  }
+
+  &unset {
+    flex-direction: unset;
+  }
+}
+
+.fw {
+  &wrap {
+    flex-wrap: wrap;
+  }
+
+  &nowrap {
+    flex-wrap: nowrap;
+  }
+
+  &wrapreverse {
+    flex-wrap: wrap-reverse;
+  }
+}
+
+.fb {
+  &auto {
+    flex-basis: auto;
+  }
+
+  &content {
+    flex-basis: content;
+  }
+}
+
+.as {
+  &center {
+    align-self: center;
+  }
+
+  &auto {
+    align-self: auto;
+  }
+
+  &start {
+    align-self: flex-start;
+    align-self: start;
+  }
+
+  &end {
+    align-self: flex-end;
+    align-self: end;
+  }
+
+  &stretch {
+    align-self: stretch;
+  }
+}

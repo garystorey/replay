@@ -1,0 +1,202 @@
+.snackboxmicro {
+  --width: 500px;
+  --outer-size-diff: 1.2;
+  --height: calc(var(--width) / 2);
+  --button-size: calc(var(--width) * 0.075);
+  --button-outer: calc(var(--button-size) * var(--outer-size-diff));
+  --button-size-lg: calc(var(--button-size) * 1.25);
+  --button-outer-lg: calc(var(--button-size-lg) * var(--outer-size-diff));
+  --button-size-sm: calc(var(--button-size) * 0.2);
+  --button-outer-sm: calc(var(--button-size-sm) * var(--outer-size-diff));
+  --blur: calc(var(--button-size) / 4);
+  --displacement: calc(var(--blur) / 2);
+  --font-size: calc(var(--width) / 50);
+  --fs-sm: calc(var(--font-size) * 0.75);
+  --dark: #000;
+  --nuetral: #333;
+  --light: var(--light);
+
+  --boardColor: var(--gray-7);
+  --highlightColor: var(--grape-7);
+  --buttonColor: var(--gray-5);
+
+  position: relative;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--button-size); /*oddly enough it works */
+  box-shadow: var(--displacement) var(--displacement) var(--blur)
+    rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--dark);
+  color: var(--light);
+  background-color: var(--boardColor);
+  font-size: var(--font-size);
+}
+
+.button {
+  border-radius: 50%;
+  display: flex;
+  width: var(--button-outer);
+  height: var(--button-outer);
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: #ccc;
+  background-color: #999;
+  transition: background-color 150ms linear;
+  transform: translate(-50%, -50%);
+}
+
+.button [data-inner] {
+  background-color: var(--buttonColor);
+  width: var(--button-size);
+  height: var(--button-size);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button[data-size="small"] {
+  width: var(--button-outer-sm);
+  height: var(--button-outer-sm);
+}
+.button[data-size="small"] [data-inner] {
+  width: var(--button-size-sm);
+  height: var(--button-size-sm);
+}
+
+.button[data-size="large"] {
+  width: var(--button-outer-lg);
+  height: var(--button-outer-lg);
+}
+.button[data-size="large"] [data-inner] {
+  width: var(--button-size-lg);
+  height: var(--button-size-lg);
+}
+
+.button[data-user="true"] {
+  border: 4px solid var(--highlightColor);
+}
+.button[data-playback="true"] [data-inner] {
+  background-color: var(--highlightColor);
+}
+.button[data-user="true"][data-playback="true"] [data-inner] {
+  background-color: var(--highlightColor);
+}
+
+.button[data-name="b0"] {
+  top: 60%;
+  left: 55%;
+  animation-delay: 100ms;
+}
+.button[data-name="b1"] {
+  top: 48%;
+  left: 66%;
+  animation-delay: 200ms;
+}
+.button[data-name="b2"] {
+  top: 33%;
+  left: 55%;
+  animation-delay: 100ms;
+}
+.button[data-name="b3"] {
+  top: 22%;
+  left: 66%;
+  animation-delay: 200ms;
+}
+.button[data-name="b4"] {
+  top: 25%;
+  right: 1%;
+  animation-delay: 400ms;
+}
+.button[data-name="b5"] {
+  top: 22%;
+  left: 78.5%;
+  animation-delay: 300ms;
+}
+.button[data-name="b6"] {
+  top: 50%;
+  right: 1%;
+  animation-delay: 400ms;
+}
+.button[data-name="b7"] {
+  top: 48%;
+  left: 78.5%;
+  animation-delay: 300ms;
+}
+.button[data-name="b12"] {
+  /*Up*/
+  bottom: 5%;
+  left: 49%;
+  transform: translateX(-50%);
+  animation-delay: 100ms;
+}
+.button[data-name="b13"] {
+  /* down */
+  top: 38%;
+  left: 32%;
+  animation-delay: 50ms;
+}
+.button[data-name="b14"] {
+  /*left*/
+  top: 38%;
+  left: 19%;
+}
+.button[data-name="b15"] {
+  /*right*/
+  top: 48%;
+  left: 44%;
+  animation-delay: 75ms;
+}
+
+/* top */
+
+/*
+.b8 {
+  top: 6%;
+  left: 12%;
+  height: var(--button-size-sm);
+  width: var(--button-size-sm);
+  font-size: var(--fs-sm);
+}
+
+.b9 {
+  top: 6%;
+  left: 20%;
+  height: var(--button-size-sm);
+  width: var(--button-size-sm);
+  font-size: var(--fs-sm);
+}
+.b10 {
+  top: 6%;
+  left: 23%;
+  height: var(--button-size-sm);
+  width: var(--button-size-sm);
+  font-size: var(--fs-sm);
+}
+.b11 {
+  top: 6%;
+  left: 35%;
+  height: var(--button-size-sm);
+  width: var(--button-size-sm);
+  font-size: var(--fs-sm);
+}
+
+.b16 {
+  top: 6%;
+  left: 38%;
+  height: var(--button-size-sm);
+  width: var(--button-size-sm);
+  font-size: var(--fs-sm);
+}
+.b17 {
+  top: 6%;
+  left: 40%;
+  height: var(--button-size-sm);
+  width: var(--button-size-sm);
+  font-size: var(--fs-sm);
+}
+*/

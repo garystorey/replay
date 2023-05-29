@@ -33,7 +33,7 @@ model Replay {
   created      DateTime        @default(now())
   updated      DateTime        @updatedAt()
   name         String
-  description  String
+  description  String?
   controllerId String
   startTs      Int
   endTs        Int

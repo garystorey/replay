@@ -1,0 +1,53 @@
+.joystick {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  border: 1px solid #666;
+  position: relative;
+}
+.stick {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  border: 1px solid #777;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #999;
+  transition: top, left, right, bottom, background-color 150ms linear;
+}
+
+.inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 51px;
+  width: 51px;
+  transform: translate(-50%, -50%);
+  background-color: var(--buttonColor);
+  border-radius: 50%;
+  border: 1px solid #777;
+}
+
+.is-down {
+  transform: translate(-50%, -20%);
+}
+.is-left {
+  transform: translate(-20%, -50%);
+}
+.is-right {
+  transform: translate(-80%, -50%);
+}
+.is-up {
+  transform: translate(-50%, -80%);
+}
+.is-active {
+  background-color: var(--highlightColor);
+}
+.is-playback-active .inner {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.is-active.is-playback-active .inner {
+  background-color: var(--highlightColor);
+}
