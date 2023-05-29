@@ -5,8 +5,8 @@ import "@/styles/globals.css"
 import { Footer, Header } from "../components"
 
 export const metadata = {
-  title: "PageTitle",
-  description: "this is the page description",
+  title: "Junkfood Arcades",
+  description: "Junkfood Arcades",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
