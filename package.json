@@ -7,7 +7,8 @@
     "build": "next build",
     "lint": "next lint",
     "db": "npx prisma studio",
-    "db:push": "npx prisma db push"
+    "db:push": "npx prisma db push",
+    "db:gen": "npx prisma generate"
   },
   "prisma": {
     "schema": "./src/schemas/schema.prisma"
