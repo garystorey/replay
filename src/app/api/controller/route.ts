@@ -31,15 +31,14 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     const { sn = "" } = body
-    const id = createId()
     const sql = `insert into Controller (id) values (?)`
-    const results = await conn.execute(sql, [id, sn])
+    const results = await conn.execute(sql, [sn])
     const success = results.rowsAffected === 1
 
     return NextResponse.json({
       status: success ? 200 : 500,
       statusText: success ? "ok" : "error",
-      id: success ? id : "",
+      id: success ? sn : "",
     })
   } catch (err) {
     NextResponse.json({ err })
