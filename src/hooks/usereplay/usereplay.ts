@@ -1,19 +1,14 @@
 import { Replay } from "@prisma/client"
 import { RefObject, useCallback, useState } from "react"
+
 import { Frame } from "../../types"
 import { empty, frameRateFromVideoSpeed, post, toMS } from "../../utils"
-import useFrameLoop from "../useframeloop"
+import useFrameLoop from "../useFrameLoop"
 
-type UpdateReplayProps = Pick<Replay, "id" | "name" | "description" | "data">
+type UpdateReplayProps = Pick<Replay, "id" | "name" | "description">
 type SaveReplayProps = Pick<
   Replay,
-  | "name"
-  | "description"
-  | "data"
-  | "characterId"
-  | "channelId"
-  | "picture"
-  | "video"
+  "name" | "description" | "startTs" | "endTs" | "controllerId" | "ownerId"
 >
 
 const FRAMES_IN_MS = 16.66667
@@ -28,11 +23,8 @@ const _addFrame = (replay: Frame[], index: number, frame: Frame): Frame[] => {
   return [...replay.slice(0, index), newFrame, ...replay.slice(index)]
 }
 
-export default function useReplay({
-  rate = 1,
-  videoRef,
-}: UseReplayProps) {
-  const [replay, setInternalReplay] = useState<Frame[]>([empty()])
+export default function useReplay({ rate = 1, videoRef }: UseReplayProps) {
+  const [replay, setInternalReplay] = useState<Frame[]>([])
   const [frame, setFrame] = useState<Frame>({ ...data[0] })
   const [index, setIndex] = useState<number>(0)
   const [isPlaying, setIsPlaying] = useState<boolean>(false)
@@ -43,12 +35,7 @@ export default function useReplay({
     setIndex(index)
   }, [])
 
-  const { restart: restartFrames } = useFrameLoop(
-    updateFrames,
-    replay,
-    isPlaying,
-    frameRate
-  )
+  const { restart: restartFrames } = useFrameLoop(updateFrames, replay, isPlaying, frameRate)
 
   const setReplay = useCallback((frames: Frame[]) => {
     setInternalReplay(frames)
@@ -75,9 +62,7 @@ export default function useReplay({
       setIndex(newIndex)
       if (videoRef?.current) {
         try {
-          videoRef.current.currentTime += Math.round(
-            replay[index].frames * FRAMES_IN_MS
-          )
+          videoRef.current.currentTime += Math.round(replay[index].frames * FRAMES_IN_MS)
         } catch (e) {
           videoRef.current.currentTime = 0
         }
@@ -95,9 +80,7 @@ export default function useReplay({
       setIndex(newIndex)
       if (videoRef?.current) {
         try {
-          videoRef.current.currentTime += Math.round(
-            replay[index].frames * 16.6666667
-          )
+          videoRef.current.currentTime += Math.round(replay[index].frames * 16.6666667)
         } catch (e) {
           videoRef.current.currentTime = 0
         }
@@ -135,7 +118,6 @@ export default function useReplay({
     setFrame({ ...updated[index] })
   }, [frame, index, replay])
 
-
   const addFrame = useCallback(() => {
     const updated = _addFrame(replay, index, replay[index])
     setInternalReplay([...updated])
@@ -157,22 +139,28 @@ export default function useReplay({
     [index, replay]
   )
 
-  const updateReplay = useCallback( async (r: UpdateReplayProps) => await post("/api/replay/update", r),[])
+  const updateReplay = useCallback(
+    async (r: UpdateReplayProps) => await post("/api/replay/update", r),
+    []
+  )
 
-  const saveReplay = useCallback(async (r: SaveReplayProps) => await post("/api/replay/new", r),[])
+  const saveReplay = useCallback(async (r: SaveReplayProps) => await post("/api/replay/new", r), [])
 
-  const newReplay = useCallback(() => ({
-    name: "",
-    description: "",
-    data: [empty()],
-    character: {
-      game: {
-        name: "",
-        genre: "",
+  const newReplay = useCallback(
+    () => ({
+      name: "",
+      description: "",
+      data: [empty()],
+      character: {
+        game: {
+          name: "",
+          genre: "",
+        },
+        characterType: "",
       },
-      characterType: "",
-    },
-  }),[])
+    }),
+    []
+  )
 
   return {
     replay,
