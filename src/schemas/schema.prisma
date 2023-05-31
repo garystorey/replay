@@ -20,12 +20,12 @@ model ButtonEntry {
 }
 
 model Controller {
-  id      String @id @unique //serial number
-  ownerId String
-  owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  id      String  @id @unique
+  owner   User?   @relation(fields: [ownerId], references: [id])
+  ownerId String?
 
   @@index(id)
-  @@index([ownerId, id])
+  @@index([ownerId])
 }
 
 model Replay {
