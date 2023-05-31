@@ -67,7 +67,7 @@ export type ModalCloseButtonProps = Omit<ButtonProps, "as" | "children">
 function ModalCloseButton({ className, ...props }: ModalCloseButtonProps) {
   useModalContext()
   return (
-    <Button className={`cursor-pointer ${className}`} {...props} variant="tertiary">
+    <Button className={`cursor-pointer ${className}`} {...props} variant="none">
       &times;
     </Button>
   )
