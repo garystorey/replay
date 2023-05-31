@@ -1,6 +1,5 @@
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
-
 // import Link from "next/link"
+import { Login } from "../login/login"
 
 export function Header() {
   return (
@@ -28,14 +27,7 @@ export function Header() {
             </div> */}
 
             <div className="flex items-center gap-4">
-              <div className="sm:flex sm:gap-4">
-                <SignedIn>
-                  <UserButton />
-                </SignedIn>
-                <SignedOut>
-                  <SignInButton afterSignUpUrl="/profile" afterSignInUrl="/profile" />
-                </SignedOut>
-              </div>
+              <Login />
 
               <div className="block md:hidden">
                 <button
