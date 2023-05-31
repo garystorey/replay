@@ -9,6 +9,23 @@ import {
   MouseEvent,
 } from "react"
 
+export type BaseFrame = {
+  frames: number
+  buttons: number
+  timestamp: number
+}
+
+export type AltFrame = {
+  buttons: string
+  timestamp: number
+}
+
+export type FrameWithDescription = BaseFrame & {
+  description: string
+}
+
+export type Frame = BaseFrame | FrameWithDescription
+
 export type DivAllAttributes = ComponentPropsWithRef<"div">
 export type SpanAllAttributes = ComponentPropsWithRef<"span">
 export type ParagraphAllAttributes = ComponentPropsWithRef<"p">

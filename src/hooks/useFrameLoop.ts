@@ -1,4 +1,5 @@
 import { useRef, useCallback } from "react"
+
 import { Frame } from "../types"
 import { useRAF } from "./useAnimationFrame"
 
@@ -25,10 +26,7 @@ export default function useFrameLoop(
       return
     }
 
-    const ts =
-      currentFrame.current === 0
-        ? 0
-        : Math.round(frame.frames * FRAME_MS) * frameRate
+    const ts = currentFrame.current === 0 ? 0 : Math.round(frame.frames * FRAME_MS) * frameRate
 
     const now = Date.now()
     const timeDiff = now - timer.current
