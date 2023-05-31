@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { sn = "" } = body
     const id = createId()
-    const sql = `insert into Controller (id,serialNumber) values (?,?)`
+    const sql = `insert into Controller (id) values (?)`
     const results = await conn.execute(sql, [id, sn])
     const success = results.rowsAffected === 1
 
